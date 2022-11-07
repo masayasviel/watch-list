@@ -1,9 +1,17 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import ListTile from '../src/components/list-tile';
 import styles from '../styles/Home.module.css';
 
+import { Flex } from '@mantine/core';
+
 const Home: NextPage = () => {
+  const title = 'タイトル';
+  const kana = 'カナ';
+  const thumbnail =
+    'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80';
+  const range = new Array(10).fill(0);
   return (
     <div className={styles.container}>
       <Head>
@@ -13,38 +21,16 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          ようこそ<a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a href="https://github.com/vercel/next.js/tree/canary/examples" className={styles.card}>
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
-        </div>
+        <Flex
+          direction={{ base: 'column', sm: 'row' }}
+          gap={{ base: 'sm', sm: 'lg' }}
+          justify={{ sm: 'center' }}
+          wrap="wrap"
+        >
+          {range.map((_) => (
+            <ListTile title={title} kana={kana} thumbnail={thumbnail}></ListTile>
+          ))}
+        </Flex>
       </main>
 
       <footer className={styles.footer}>
