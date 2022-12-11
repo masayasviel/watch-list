@@ -5,6 +5,7 @@ import ListTile from '../src/components/list-tile';
 import styles from '../styles/Home.module.css';
 
 import { Flex } from '@mantine/core';
+import LineUp from '../src/components/LineUp';
 
 const Home: NextPage = () => {
   const title = 'タイトル';
@@ -31,6 +32,8 @@ const Home: NextPage = () => {
             <ListTile title={title} kana={kana} thumbnail={thumbnail}></ListTile>
           ))}
         </Flex>
+        <h1>太田作</h1>
+        <LineUp></LineUp>
       </main>
 
       <footer className={styles.footer}>
