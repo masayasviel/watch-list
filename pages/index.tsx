@@ -1,10 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import ListTile from '../src/components/list-tile';
 import styles from '../styles/Home.module.css';
 
-import { Flex } from '@mantine/core';
 import LineUp from '../src/components/LineUp';
 
 const Home: NextPage = () => {
@@ -22,16 +20,6 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Flex
-          direction={{ base: 'column', sm: 'row' }}
-          gap={{ base: 'sm', sm: 'lg' }}
-          justify={{ sm: 'center' }}
-          wrap="wrap"
-        >
-          {range.map((_) => (
-            <ListTile title={title} kana={kana} thumbnail={thumbnail}></ListTile>
-          ))}
-        </Flex>
         <h1>太田作</h1>
         <LineUp></LineUp>
       </main>
