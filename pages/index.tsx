@@ -20,7 +20,6 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1>太田作</h1>
         <LineUp></LineUp>
       </main>
 

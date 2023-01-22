@@ -1,5 +1,4 @@
 import {NextPage} from "next";
-// import Card from "./card";
 import ListTile from "./list-tile";
 
 const Cards :NextPage = () => {
