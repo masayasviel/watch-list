@@ -1,7 +1,8 @@
 import React from 'react';
 import {AppShell, Header, SimpleGrid} from '@mantine/core';
-import HeaderApp from "./components/header";
-import CardApp from "./components/card-app";
+
+import HeaderApp from './components/header';
+import CardApp from './components/card-app';
 
 function App() {
     const range = new Array(10).fill(0);
