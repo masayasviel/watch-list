@@ -10,16 +10,18 @@ function App() {
     return (
         <AppShell
             padding="md"
-            header={<Header height={60} p="xs">{
-                <HeaderApp></HeaderApp>
-            }</Header>}
+            header={
+                <Header height={60} p="xs">{
+                    <HeaderApp></HeaderApp>
+                }</Header>
+            }
         >
             <SimpleGrid
                 cols={4}
                 spacing='md'
                 breakpoints={[
-                    { maxWidth : 600, cols : 1, spacing : 'md'},
-                    { maxWidth : 980, cols : 2, spacing : 'md'},
+                    { maxWidth : 600, cols : 1, spacing : 'md' },
+                    { maxWidth : 980, cols : 2, spacing : 'md' },
                 ]}
             >
                 {range.map(_ => <CardApp title='タイトル' kana='カナ' thumbnail={thumbnail}></CardApp>)}
