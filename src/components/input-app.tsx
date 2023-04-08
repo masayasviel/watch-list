@@ -5,7 +5,7 @@ import { Area, MediaSize } from 'react-easy-crop';
 
 import {RegisterInterface} from '../interfaces/register.interface';
 import getCroppedImg from '../hooks/get-cropped-image.hook';
-import CropperModal, { ASPECT_RATIO, CROP_WIDTH } from './cropper-modal/cropper-modal';
+import CropperModal, { ASPECT_RATIO, CROP_WIDTH } from './cropper-modal';
 
 interface PropType {
     /** タイトル */
