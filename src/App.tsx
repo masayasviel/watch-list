@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppShell, Header, SimpleGrid} from '@mantine/core';
+import { AppShell, Header, SimpleGrid } from '@mantine/core';
 
 import HeaderApp from './components/header-app/header-app';
 import CardApp from './components/card-app';

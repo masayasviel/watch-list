@@ -3,7 +3,7 @@ import { useForm, isNotEmpty, matches } from '@mantine/form';
 import { TextInput, Button, Box, Group, Image } from '@mantine/core';
 import { Area, MediaSize } from 'react-easy-crop';
 
-import {RegisterInterface} from '../interfaces/register.interface';
+import { RegisterInterface } from '../interfaces/register.interface';
 import getCroppedImg from '../hooks/get-cropped-image.hook';
 import CropperModal, { ASPECT_RATIO, CROP_WIDTH } from './cropper-modal';
 

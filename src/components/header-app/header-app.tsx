@@ -5,11 +5,11 @@ import {
     Title,
     Modal,
 } from '@mantine/core';
-import {useDisclosure} from '@mantine/hooks';
+import { useDisclosure } from '@mantine/hooks';
 
 import InputApp from '../input-app';
 import style from './header-app.module.css';
-import {RegisterInterface} from '../../interfaces/register.interface';
+import { RegisterInterface } from '../../interfaces/register.interface';
 
 const HeaderApp = () => {
     const title = '';
