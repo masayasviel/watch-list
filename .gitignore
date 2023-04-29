@@ -8,7 +8,6 @@
 
 # production
 /build
-example.env
 
 # misc
 .DS_Store

@@ -7,47 +7,49 @@ import {
 } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useDisclosure } from '@mantine/hooks';
+import { notifications } from '@mantine/notifications';
 
-import InputApp from '../input-app';
+import { RootStateType } from '../../store';
 import style from './header-app.module.css';
-import {store, authSlice, RootStateType} from '../../store';
-import { RegisterInterface } from '../../interfaces/register.interface';
+import { logout } from '../../hooks/firebase.hook';
+import LoginApp from '../login';
 
 const HeaderApp = () => {
-    const title = '';
-    const kana = '';
-    const thumbnail = '';
-    const actionType = 'register';
     const [opened, { open, close }] = useDisclosure(false);
     const selector = useSelector((state: RootStateType) => state.authentication);
 
-    const onClickRegister = (param: RegisterInterface) => {
-        console.log(param);
+    const onClickLoginButton = async () => {
         close();
-    }
+        notifications.show({
+            withCloseButton: true,
+            autoClose: 1000,
+            message: 'ログインしました',
+        });
+    };
+
+    const onClickLogoutButton = async () => {
+        await logout();
+        notifications.show({
+            withCloseButton: true,
+            autoClose: 1000,
+            message: 'ログアウトしました',
+        });
+    };
 
     return (
         <>
-            <Modal opened={opened} onClose={close} title="登録">
-                <InputApp
-                    title={title}
-                    kana={kana}
-                    thumbnail={thumbnail}
-                    actionType={actionType}
-                    onClickRegister={onClickRegister}
-                ></InputApp>
+            <Modal opened={opened} onClose={onClickLoginButton} title="ログイン">
+                <LoginApp
+                    closeDialog={onClickLoginButton}
+                ></LoginApp>
             </Modal>
 
             <Container className={style.inner} fluid>
                 <Title order={1}>観たアニメ！</Title>
                 {
-                    selector.token !== ''
-                        ? <Button onClick={open}>登録</Button>
-                        : <Button
-                            onClick={() =>
-                                store.dispatch(authSlice.actions.saveToken({token: 'token'}))
-                            }
-                        >ログイン</Button>
+                    selector == null
+                        ? <Button onClick={open}>ログイン</Button>
+                        : <Button onClick={onClickLogoutButton}>ログアウト</Button>
                 }
             </Container>
         </>

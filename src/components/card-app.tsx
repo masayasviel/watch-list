@@ -9,6 +9,7 @@ import {
     Modal
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { notifications } from '@mantine/notifications';
 
 import InputApp from './input-app';
 import { RegisterInterface } from '../interfaces/register.interface';
@@ -30,6 +31,11 @@ const CardApp = ({ title, kana, thumbnail }: PropType) => {
     const onClickRegister = (param: RegisterInterface) => {
         console.log(param);
         close();
+        notifications.show({
+            withCloseButton: true,
+            autoClose: 1000,
+            message: '更新完了',
+        });
     }
 
     return (

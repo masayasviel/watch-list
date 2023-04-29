@@ -1,24 +1,22 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { UserCredential } from 'firebase/auth';
 
-type AuthStateType = {
-    token: string;
-};
 
 export interface RootStateType {
-    authentication: AuthStateType;
+    authentication: UserCredential | null;
 }
 
-const initialState: AuthStateType = {
-    token: '',
+const initialState: RootStateType = {
+    authentication: null,
 };
 
 export const authSlice = createSlice({
     name: 'authentication',
     initialState,
     reducers: {
-        saveToken(state, action: PayloadAction<{ token: string }>) {
-            state.token = action.payload.token;
+        saveToken(state, action: PayloadAction<{ authentication: UserCredential | null }>) {
+            state.authentication = action.payload.authentication;
         }
     },
 });
