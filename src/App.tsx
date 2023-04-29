@@ -1,5 +1,4 @@
-import React from 'react';
-import {AppShell, Button, Header, Modal, SimpleGrid} from '@mantine/core';
+import { AppShell, Button, Header, Modal, SimpleGrid } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useDisclosure } from '@mantine/hooks';
 import { useSelector } from 'react-redux';

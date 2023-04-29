@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Button,
     Container,
@@ -9,10 +8,10 @@ import { useSelector } from 'react-redux';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 
-import { RootStateType } from '../../store';
 import style from './header-app.module.css';
-import { logout } from '../../hooks/firebase.hook';
 import LoginApp from '../login';
+import { logout } from '../../hooks/firebase.hook';
+import { RootStateType } from '../../store';
 
 const HeaderApp = () => {
     const [opened, { open, close }] = useDisclosure(false);

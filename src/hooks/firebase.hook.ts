@@ -4,7 +4,7 @@ import { uploadString, ref } from 'firebase/storage';
 
 import { firebaseAuth, firestore, firebaseStorage } from '../firebase';
 import { store, authSlice } from '../store';
-import {RegisterInterface} from '../interfaces/register.interface';
+import { RegisterInterface } from '../interfaces/register.interface';
 
 export const login = async (email: string, password: string): Promise<UserCredential> => {
     const credential = await signInWithEmailAndPassword(firebaseAuth, email, password);

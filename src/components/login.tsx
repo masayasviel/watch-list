@@ -1,4 +1,3 @@
-import React from 'react';
 import { isEmail, matches, useForm } from '@mantine/form';
 import { TextInput, Button, Box, Group, Image } from '@mantine/core';
 
