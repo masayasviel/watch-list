@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { useForm, isNotEmpty, matches } from '@mantine/form';
-import { TextInput, Button, Box, Group, Image } from '@mantine/core';
+import { TextInput, Button, Box, Group, Image, Stack } from '@mantine/core';
 import { Area, MediaSize } from 'react-easy-crop';
 
 import { RegisterInterface } from '../interfaces/register.interface';
 import getCroppedImg from '../hooks/get-cropped-image.hook';
 import CropperModal, { ASPECT_RATIO, CROP_WIDTH } from './cropper-modal';
+import dummyImage from '../assets/no-image.png';
 
 interface PropType {
     /** タイトル */
@@ -105,63 +106,67 @@ const InputApp = ({ title, kana, actionType, onClickRegister, thumbnail }: PropT
 
     /** 入力のエミット */
     const emitInputValue = () => {
+        const base64String = croppedImgSrc.split(',')[1];
         onClickRegister({
-            thumbnail: croppedImgSrc,
+            thumbnail: base64String,
             ...form.values
         });
     }
 
     return (
         <Box maw={320} mx="auto">
-            <TextInput
-                withAsterisk
-                label="タイトル"
-                placeholder="タイトル"
-                {...form.getInputProps('title')}
-                error={form.isValid('title') ? null : 'require'}
-            />
-            <TextInput
-                withAsterisk
-                mt="md"
-                label="読みカナ"
-                placeholder="読みカナ"
-                {...form.getInputProps('kana')}
-                error={form.isValid('kana') ? null : 'カタカナ'}
-            />
+            <Stack>
+                <TextInput
+                    withAsterisk
+                    label="タイトル"
+                    placeholder="タイトル"
+                    {...form.getInputProps('title')}
+                    error={form.isValid('title') ? null : 'require'}
+                />
+                <TextInput
+                    withAsterisk
+                    mt="md"
+                    label="読みカナ"
+                    placeholder="読みカナ"
+                    {...form.getInputProps('kana')}
+                    error={form.isValid('kana') ? null : 'カタカナ'}
+                />
 
-            <div>
-                <Button variant="contained" component="label">
-                    Upload File
-                    <input type="file" hidden onChange={onFileChange} />
-                </Button>
-            </div>
-            <div className="img-container">
-                {croppedImgSrc ? (
-                    <Image maw={240} mx="auto" radius="md" src={croppedImgSrc} />
-                ) : (
-                    <div className="no-img">The cropped image is displayed here</div>
-                )}
-            </div>
+                <Group position="center">
+                    <Button component="label">
+                        Upload File
+                        <input type="file" hidden onChange={onFileChange} />
+                    </Button>
+                </Group>
 
-            <CropperModal
-                crop={crop}
-                setCrop={setCrop}
-                zoom={zoom}
-                setZoom={setZoom}
-                onCropComplete={onCropComplete}
-                open={isOpen}
-                onClose={() => setIsOpen(false)}
-                imgSrc={imgSrc}
-                showCroppedImage={showCroppedImage}
-                onMediaLoaded={onMediaLoaded}
-            />
+                <div className="img-container">
+                    {croppedImgSrc ? (
+                        <Image maw={240} mx="auto" radius="md" src={croppedImgSrc} />
+                    ) : (
+                        <Image maw={240} mx="auto" radius="md" src={dummyImage} />
+                    )}
+                </div>
 
-            <Group position="center" mt="xl">
-                <Button
-                    disabled={!form.isValid()}
-                    onClick={emitInputValue}
-                >{actionType === 'register' ? '登録' : '更新'}</Button>
-            </Group>
+                <CropperModal
+                    crop={crop}
+                    setCrop={setCrop}
+                    zoom={zoom}
+                    setZoom={setZoom}
+                    onCropComplete={onCropComplete}
+                    open={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    imgSrc={imgSrc}
+                    showCroppedImage={showCroppedImage}
+                    onMediaLoaded={onMediaLoaded}
+                />
+
+                <Group position="center" mt="xl">
+                    <Button
+                        disabled={!form.isValid() || !croppedImgSrc}
+                        onClick={emitInputValue}
+                    >{actionType === 'register' ? '登録' : '更新'}</Button>
+                </Group>
+            </Stack>
         </Box>
     );
 }

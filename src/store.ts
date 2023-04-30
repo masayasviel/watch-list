@@ -1,28 +1,35 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { UserCredential } from 'firebase/auth';
 
+import { ListInterface } from './interfaces/list.interface';
 
 export interface RootStateType {
-    authentication: UserCredential | null;
+    state: {
+        authentication: boolean;
+        animeList: ListInterface[];
+    };
 }
 
-const initialState: RootStateType = {
-    authentication: null,
+const InitialState: RootStateType['state'] = {
+    authentication: false,
+    animeList: [],
 };
 
-export const authSlice = createSlice({
-    name: 'authentication',
-    initialState,
+export const stateSlice = createSlice({
+    name: 'state',
+    initialState: InitialState,
     reducers: {
-        saveToken(state, action: PayloadAction<{ authentication: UserCredential | null }>) {
+        saveToken(state, action: PayloadAction<{ authentication: boolean }>) {
             state.authentication = action.payload.authentication;
+        },
+        setList(state, action: PayloadAction<{ animeList: ListInterface[] }>) {
+            state.animeList = action.payload.animeList;
         }
     },
 });
 
 export const store = configureStore({
     reducer: {
-        authentication: authSlice.reducer,
+        state: stateSlice.reducer
     },
 });

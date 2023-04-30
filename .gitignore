@@ -2,12 +2,14 @@
 /node_modules
 /.pnp
 .pnp.js
+/.firebase
 
 # testing
 /coverage
 
 # production
 /build
+.env
 
 # misc
 .DS_Store

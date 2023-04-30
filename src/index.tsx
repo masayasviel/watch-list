@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <MantineProvider withNormalizeCSS withGlobalStyles>
+            <MantineProvider>
                 <Notifications />
                 <App />
             </MantineProvider>

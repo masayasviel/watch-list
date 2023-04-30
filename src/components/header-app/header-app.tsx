@@ -15,15 +15,10 @@ import { RootStateType } from '../../store';
 
 const HeaderApp = () => {
     const [opened, { open, close }] = useDisclosure(false);
-    const selector = useSelector((state: RootStateType) => state.authentication);
+    const selector = useSelector((state: RootStateType) => state.state.authentication);
 
     const onClickLoginButton = async () => {
         close();
-        notifications.show({
-            withCloseButton: true,
-            autoClose: 1000,
-            message: 'ログインしました',
-        });
     };
 
     const onClickLogoutButton = async () => {
@@ -37,16 +32,16 @@ const HeaderApp = () => {
 
     return (
         <>
-            <Modal opened={opened} onClose={onClickLoginButton} title="ログイン">
+            <Modal opened={opened} onClose={close} title="ログイン">
                 <LoginApp
                     closeDialog={onClickLoginButton}
                 ></LoginApp>
             </Modal>
 
             <Container className={style.inner} fluid>
-                <Title order={1}>観たアニメ！</Title>
+                <Title order={1}>観たアニメ</Title>
                 {
-                    selector == null
+                    !selector
                         ? <Button onClick={open}>ログイン</Button>
                         : <Button onClick={onClickLogoutButton}>ログアウト</Button>
                 }

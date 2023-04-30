@@ -1,5 +1,6 @@
 import { isEmail, matches, useForm } from '@mantine/form';
-import { TextInput, Button, Box, Group, Image } from '@mantine/core';
+import { TextInput, Button, Box, Group } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 
 import { login } from '../hooks/firebase.hook';
 
@@ -21,7 +22,20 @@ const LoginApp = ({ closeDialog }: PropType) => {
 
     const onClickLoginButton = async (): Promise<void> => {
         const { user, password } = form.values;
-        await login(user, password);
+        try {
+            await login(user, password);
+            notifications.show({
+                withCloseButton: true,
+                autoClose: 1000,
+                message: 'ログインしました',
+            });
+        } catch (e) {
+            notifications.show({
+                withCloseButton: true,
+                autoClose: 1000,
+                message: 'ログイン失敗',
+            });
+        }
         closeDialog();
     };
 
