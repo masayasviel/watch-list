@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { AppShell, Button, Header, Modal, SimpleGrid, Container, ActionIcon } from '@mantine/core';
+import { AppShell, Button, Header, Modal, SimpleGrid, Container } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useDisclosure } from '@mantine/hooks';
 import { useSelector } from 'react-redux';
