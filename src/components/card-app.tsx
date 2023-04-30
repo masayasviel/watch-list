@@ -42,7 +42,7 @@ const CardApp = ({ id, title, kana, thumbnail }: PropType) => {
         getImageUri(thumbnail).then((e) => {
             setThumbnailUri(e);
         })
-    }, []);
+    }, [thumbnail]);
 
     const selector = useSelector((state: RootStateType) => state.state.authentication);
 
