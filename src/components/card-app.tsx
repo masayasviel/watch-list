@@ -6,6 +6,7 @@ import {
     Image,
     Text,
     Title,
+    Tooltip,
     Modal
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -78,21 +79,23 @@ const CardApp = ({ id, title, kana, thumbnail }: PropType) => {
                 ></InputApp>
             </Modal>
 
-            <Card
-                shadow="sm"
-                p="md"
-                radius="md"
-                withBorder
-                onClick={onClickCard}
-            >
-                <Group position="center" grow>
-                    <Image src={thumbnailUri} radius="md"/>
-                    <Flex gap="md" justify="center" align="center" direction="column" wrap="nowrap">
-                        <Title order={3}>{title}</Title>
-                        <Text fz="xs">{kana}</Text>
-                    </Flex>
-                </Group>
-            </Card>
+            <Tooltip.Floating label={title}>
+                <Card
+                    shadow="sm"
+                    p="md"
+                    radius="md"
+                    withBorder
+                    onClick={onClickCard}
+                >
+                    <Group position="center" grow>
+                        <Image src={thumbnailUri} radius="md"/>
+                        <Flex gap="md" justify="center" align="center" direction="column" wrap="nowrap">
+                            <Title order={3} lineClamp={1}>{title}</Title>
+                            <Text fz="xs" lineClamp={1}>{kana}</Text>
+                        </Flex>
+                    </Group>
+                </Card>
+            </Tooltip.Floating>
         </>
     );
 };
